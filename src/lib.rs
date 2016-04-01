@@ -8,14 +8,14 @@ impl<T: AsRef<str>> Pad for T {
         let padding_length = get_padding_length(self.as_ref(), length);
         let padding = get_padding(padding_character, padding_length);
         
-        format!("{}{}", padding, self.as_ref())
+        padding + self.as_ref()
     }
     
     fn pad_right(&self, length: usize, padding_character: char) -> String {
         let padding_length = get_padding_length(self.as_ref(), length);
         let padding = get_padding(padding_character, padding_length);
-        
-        format!("{}{}", self.as_ref(), padding)
+
+        self.as_ref().to_owned() + &padding        
     }
 }
 
