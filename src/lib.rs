@@ -29,7 +29,9 @@ fn get_padding_length(content: &str, length: usize) -> usize {
 }
 
 fn get_padding(padding_character: char, length: usize) -> String {
-    String::from_utf8(vec![padding_character as u8; length]).unwrap()
+    unsafe {
+        String::from_utf8_unchecked(vec![padding_character as u8; length])        
+    }
 }
 
 #[cfg(test)]
